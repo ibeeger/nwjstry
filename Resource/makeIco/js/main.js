@@ -17,7 +17,6 @@ if (typeof window.FileReader === 'undefined') {
 }
 
 qico.addEventListener("click", function() {
-	config.init(sizes);
 
 	// dir.saveTest(JSON.stringify(process.env));
 }, false);
@@ -68,23 +67,51 @@ function getImgSize(img, callback) {
 			h: img.height
 		});
 	}
-}
+};
+
+$(".set ul li").click(function() {
+	if ($(this).hasClass("cs")) {
+		$(this).removeClass("cs")
+
+	} else {
+		$(this).addClass("cs")
+
+	};
+});
+$(".set a").click(function() {
+	var lt = $(".set li");
+	var arr = [];
+	for (var i =0; i<lt.length ; i++) {
+		arr[i] = {
+			open: lt.eq(i).hasClass("cs") ? true : false,
+			value: lt.eq(i).html()
+		};
+	};
+	config.init(arr);
+	$(".set").hide();
+})
+
 
 function makeImage(pic) {
 	getImgSize(pic, function(ds) {
 		config.get(function(sizes) {
-			canvas.width = sizes[step];
-			canvas.height = sizes[step];
-			var img = new Image();
-			img.src = files[0]["path"];
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx.drawImage(img, 0, 0, sizes[step], sizes[step]);
-			base64Data = cs.toDataURL().replace(/^data:image\/png;base64,/, "");
-			dir.saveFile({
-				img: base64Data,
-				size: sizes[step]
-			}, state);
+
+			if (sizes[step]["open"]) {
+				canvas.width = parseInt(sizes[step]["value"]);
+				canvas.height = parseInt(sizes[step]["value"]);
+				var img = new Image();
+				img.src = files[0]["path"];
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+				base64Data = cs.toDataURL().replace(/^data:image\/png;base64,/, "");
+				dir.saveFile({
+					img: base64Data,
+					size: sizes[step]["value"]
+				}, state);
+
+			};
 			step++;
+			$(".fxed").html(step +":"+sizes.length);
 			if (step == sizes.length) {
 				clearTimeout(timer);
 			}

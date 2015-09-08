@@ -8,9 +8,9 @@ function makeConfig(data) {
 			// dir.saveTest(arguments);
 			if (err) {
 				fs.mkdirSync(process.env.HOME + "/Library/makeIco/");
-				fs.writeFile(url, "module.exports={value:[" + data + "]}", function() {})
+				fs.writeFile(url, "module.exports={value:" + JSON.stringify(data) + "}", function() {})
 			} else {
-				fs.writeFileSync(url, "module.exports={value:[" + data + "]}");
+				fs.writeFileSync(url, "module.exports={value:" + JSON.stringify(data) + "}");
 			};
 		})
 		// fs.mkdirSync(process.env.HOME+"/Library/makeIco/");
