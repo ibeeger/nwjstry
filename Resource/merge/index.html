@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>合并图片并导出css</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		html,body{width: 100%; height: 100%; overflow: hidden; border: 0px;}
+		.box,div{ width: 100%; height: 100%;}
+		.box p{ width: 85%; height: 85%; margin: 7.5%; border:2px dashed #ccc; line-height: 360px; text-align: center; color: #fff; font-size: 15px; text-shadow:-2px -1px 0 #000;}
+		.success{ background-color: #fefefe;}
+		.fail{background-color: #cc0}
+		.norm{background-color: #fff;}
+		.hover{ background-color: #999;}
+		.fxed{ position: fixed; z-index: 100; height: 10px; left: 0; top: 0; width: 100%; word-break:break-all;}
+		canvas{visibility: hidden;}
+	</style>
+</head>
+<body>
+	<div class="fxed"></div>
+	<div class="box">
+		<p id="status">拖动到这里</p>
+	</div>
+	<canvas id="cs"></canvas>
+	<script>
+	 	// 	var option = {
+	 	// 	  key:"F",
+			//   active : function() {
+			//     document.querySelector(".fxed").innerHTML =  this.key ; 
+			//   },
+			//   failed : function(msg) {
+			//     // :(, fail to register the |key| or couldn't parse the |key|.
+			//     document.querySelector(".fxed").innerHTML ="msg";
+			//   }
+			// };
+			// var shortcut = new gui.Shortcut(option);
+			// 	gui.App.registerGlobalHotKey(shortcut);
+			// You can also add listener to shortcut's active and failed event.
+				// shortcut.on('active', function() {
+				// 	  document.querySelector(".fxed").innerHTML = ("console " + this.key + "+"+new Date().getTime()); 
+			
+				// });
+
+				// shortcut.on('failed', function(msg) {
+				// 		 document.querySelector(".fxed").innerHTML = "error"; 
+				// });
+				 // document.querySelector(".fxed").innerHTML = JSON.stringify(shortcut);
+
+		
+
+			// gui.App.unregisterGlobalHotKey(shortcut);
+	</script>
+	<script src="./js/main.js"></script>
+	<script src="http://works.ibeeger.com/nodewebkit/js/menu.js"></script>
+</body>
+</html>
