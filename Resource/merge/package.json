@@ -4,7 +4,7 @@
   "main": "index.html",
   "window": {
     "title": "批量图片合并,combined image Generate css",
-    "icon": "./nw.icns",
+    "icon": "./ico.png",
     "toolbar": false,
     "width": 400,
     "height": 428,
