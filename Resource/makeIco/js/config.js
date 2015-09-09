@@ -1,14 +1,16 @@
 var fs = require("fs");
 var dir = require("./dir.js");
-var url = process.env.HOME + "/Library/makeIco/config.js";
+var _path = !process.env.HOME  ? process.env.ProgramFiles+"/makeIco/" : process.env.HOME+"/Library/makeIco/";
+var url = _path + "/config.js";
 
 function makeConfig(data) {
 
-	fs.readdir(process.env.HOME + "/Library/makeIco/", function(err, msg) {
+	fs.readdir(_path, function(err, msg) {
 			// dir.saveTest(arguments);
 			if (err) {
-				fs.mkdirSync(process.env.HOME + "/Library/makeIco/");
-				fs.writeFile(url, "module.exports={value:" + JSON.stringify(data) + "}", function() {})
+				fs.mkdir(_path , 0777, function() {
+					fs.writeFileSync(url, "module.exports={value:" + JSON.stringify(data) + "}")
+				});
 			} else {
 				fs.writeFileSync(url, "module.exports={value:" + JSON.stringify(data) + "}");
 			};
@@ -17,8 +19,12 @@ function makeConfig(data) {
 };
 
 function getConfig(callback) {
-	var s = require(url);
-	callback(s.value);
+	try {
+		callback(require(url).value);
+	} catch (e) {
+		callback(null)
+	}
+
 }
 
 module.exports = {

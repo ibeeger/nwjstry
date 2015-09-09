@@ -1,5 +1,6 @@
 var dir = require("./js/dir.js");
 var config = require("./js/config.js");
+var strli = "";
 //48,72,96,144
 // var sizes = [48, 72, 96, 114, 144],
 var step = 0,
@@ -17,9 +18,20 @@ if (typeof window.FileReader === 'undefined') {
 }
 
 qico.addEventListener("click", function() {
-
-	// dir.saveTest(JSON.stringify(process.env));
+	strli = "";
+	$(".set").show();
+	for (var i = 0; i < sizes.length; i++) {
+		if (sizes[i]["open"] == true) {
+			strli += "<li class='cs'>" + sizes[i]["value"] + "</li>"
+		} else {
+			strli += "<li>" + sizes[i]["value"] + "</li>"
+		};
+	};
+	$(".set ul").html(strli);
+	$(".set ul li").click(changeItem);
 }, false);
+
+// dir.saveTest(JSON.stringify(process.env))
 
 holder.ondragover = function() {
 	state.className = 'hover';
@@ -30,7 +42,6 @@ holder.ondragend = function() {
 	return false;
 };
 holder.ondrop = function(e) {
-	window.localStorage.setItem("b", "123123");
 	e.preventDefault();
 	files = e.dataTransfer.files;
 	files = objToArry(files);
@@ -41,16 +52,20 @@ holder.ondrop = function(e) {
 	};
 	// files.forEach(initImage);
 	// document.querySelector(".fxed").innerHTML = step + ":" + imgs;
-
-	timer = setInterval(function() {
-		var img = document.createElement("img");
-		img.src = files[0].path;
-		state.innerHTML = step + "正在裁切中..."
-		makeImage(img);
-	}, 100);
+	var img = document.createElement("img");
+	img.src = files[0].path;
+	state.innerHTML = "正在裁切中..."
+	makeImage(img);
 	return false;
 };
 
+config.get(function(s) {
+	if (s == null) {
+		$(".set").show();
+	} else {
+		sizes = s;
+	};
+})
 
 function objToArry(obj) {
 	var _obj = [];
@@ -69,53 +84,64 @@ function getImgSize(img, callback) {
 	}
 };
 
-$(".set ul li").click(function() {
-	if ($(this).hasClass("cs")) {
-		$(this).removeClass("cs")
+$(".set ul li").click(changeItem);
 
-	} else {
-		$(this).addClass("cs")
 
-	};
-});
 $(".set a").click(function() {
 	var lt = $(".set li");
 	var arr = [];
-	for (var i =0; i<lt.length ; i++) {
+	for (var i = 0; i < lt.length; i++) {
 		arr[i] = {
 			open: lt.eq(i).hasClass("cs") ? true : false,
 			value: lt.eq(i).html()
 		};
 	};
+	sizes = arr;
 	config.init(arr);
 	$(".set").hide();
-})
+});
 
+function changeItem() {
+
+	if ($(this).hasClass("cs")) {
+		$(this).removeClass("cs")
+	} else {
+		$(this).addClass("cs")
+
+	};
+
+}
+
+function drawImage() {
+	step = 0;
+	sizes.forEach(function() {
+		if (sizes[step]["open"] == true) {
+			canvas.width = parseInt(sizes[step]["value"]);
+			canvas.height = parseInt(sizes[step]["value"]);
+			var img = new Image();
+			img.src = files[0]["path"];
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+			base64Data = cs.toDataURL().replace(/^data:image\/png;base64,/, "");
+			dir.saveFile({
+				img: base64Data,
+				size: sizes[step]["value"]
+			}, state);
+
+		}
+		step++;
+	})
+	if (step == sizes.length) {
+		state.className = "norm";
+		state.innerHTML = "裁剪完成~桌面查看result";
+	} else {
+		drawImage(sizes, step);
+		dir.saveTest(456 + new Date().getTime());
+	}
+}
 
 function makeImage(pic) {
 	getImgSize(pic, function(ds) {
-		config.get(function(sizes) {
-
-			if (sizes[step]["open"]) {
-				canvas.width = parseInt(sizes[step]["value"]);
-				canvas.height = parseInt(sizes[step]["value"]);
-				var img = new Image();
-				img.src = files[0]["path"];
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-				base64Data = cs.toDataURL().replace(/^data:image\/png;base64,/, "");
-				dir.saveFile({
-					img: base64Data,
-					size: sizes[step]["value"]
-				}, state);
-
-			};
-			step++;
-			$(".fxed").html(step +":"+sizes.length);
-			if (step == sizes.length) {
-				clearTimeout(timer);
-			}
-		})
-
+		drawImage(step);
 	});
 };
