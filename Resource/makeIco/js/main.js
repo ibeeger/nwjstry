@@ -1,3 +1,4 @@
+// var min = require("./node_modules/imagemin/index.js");
 var dir = require("./js/dir.js");
 var config = require("./js/config.js");
 var strli = "";
@@ -16,6 +17,10 @@ if (typeof window.FileReader === 'undefined') {
 } else {
 	state.className = 'success';
 }
+
+
+ // document.querySelector(".fxed").innerHTML =JSON.stringify(min);
+
 
 qico.addEventListener("click", function() {
 	strli = "";
@@ -45,7 +50,6 @@ holder.ondrop = function(e) {
 	e.preventDefault();
 	files = e.dataTransfer.files;
 	files = objToArry(files);
-	// document.querySelector(".fxed").innerHTML = window.localStorage;
 	if (files.length > 1) {
 		state.innerHTML = "每次只能处理一张图片,请重试";
 		return;
