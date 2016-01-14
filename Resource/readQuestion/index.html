@@ -5,12 +5,16 @@
 	<title>读取题目</title>
 </head>
 <body>
+
+  
+
  <script>
     var $ = require("jQuery");
 
    var client = require("./module/http_client.js");
 
-     
+   var save = require("./module/dir.js");
+   
 
    // var url = "http://www.mofangge.com/app/highfren/hfinfo.aspx?sid=524&sub=02&zm=2&sna=%E4%B8%A4%E8%A7%92%E5%92%8C%E4%B8%8E%E5%B7%AE%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%8F%8A%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%8F%98%E6%8D%A2&pn=1";
    var url = "http://www.mofangge.com/ajax/aHighFren.ashx?ije7t5mj&act=getQList&sub=02&type=3&sec=524&pn=";
@@ -21,27 +25,29 @@
    client.setMethod("GET");
    client.setType("text/plain; charset=utf-8");
   
-   var html ="";
+   var html =[];
    var page = 1;
    function writeHtml(str){
-   	    // console.log(str);
    	    var  dom = str.substr(10);
    	    var tds = $(dom).find("h3");
    	    var com = $(dom).find(".question");
    	    console.log(page);
-   	    var str = ''
+   	    
    	    for (var i = tds.length - 1; i >= 0; i--) {
-   	    	str+=tds.eq(i).text()+"<br>"+com.eq(i).html()+"<hr>"
+   	    	var str = {};
+   	    	str["title"] = tds.eq(i).text();
+   	    	str["con"]= com.eq(i).html();
+   	  	    html.push(str);
    	    };
-   	     html+=str;
-   	   document.write(html);
+   	    
    	   appcall.call(this,writeHtml);
    }
    appcall(writeHtml)
    
    function appcall (callback){
    	 page++;
-   	 if (page>10) {
+   	 if (page>5) {
+   	 	save.saveFile(html)
    	 	return;
    	 };
    	client.post(url+page,{},callback)
