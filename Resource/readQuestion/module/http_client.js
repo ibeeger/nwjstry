@@ -2,7 +2,7 @@
  * @Author: willclass
  * @Date:   2015-10-28 14:41:09
  * @Last Modified by:   willclass
- * @Last Modified time: 2016-01-14 20:55:31
+ * @Last Modified time: 2016-01-15 22:12:11
  */
 
 'use strict';
@@ -28,7 +28,7 @@ var client = {
 			headers: {
 				'Pragma': "no-cache",
 				'X-Requested-With': "XMLHttpRequest",
-				'Referer': 'http://www.mofangge.com/app/Highfren/hfinfo.aspx?sid=506&sub=02&zm=2&sna=%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB&pn=1',
+				// 'Referer': 'http://www.mofangge.com/app/Highfren/hfinfo.aspx?sid=506&sub=02&zm=2&sna=%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB&pn=1',
 				'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36',
 				'Content-Type': type,
 				'Content-Length': _datalth,
@@ -36,6 +36,7 @@ var client = {
 			}
 		};
 		var _req = http.request(_options, function(res) {
+			console.log(res);
 			var str = "";
 			res.setEncoding('utf8');
 			res.on("data", function(body) {

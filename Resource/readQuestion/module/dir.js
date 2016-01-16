@@ -5,16 +5,14 @@ function saveFile(data, tip) {
 	var _path = home +"/Desktop/result";
 	try{
 		 console.log(1);
-		 fs.readDirSync(_path);
+		  fs.mkdirSync(_path);
+		  fs.writeFileSync(_path+"/data.json",JSON.stringify(data));
 	}catch(e){
 		 console.log(2);
-		 fs.mkdir(_path,function(){
-		 	fs.writeFileSync(_path+"/data.json",JSON.stringify(data));
-		 	return ;
-		 });
+		
+		 fs.writeFileSync(_path+"/data.json",JSON.stringify(data));
+		 return;
 	}
-	fs.writeFileSync(_path+"/data.json",JSON.stringify(data));
-	
 };
 
 

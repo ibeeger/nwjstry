@@ -26,6 +26,5 @@
   "dependencies": {
     "async": "^1.5.2",
     "jQuery": "^1.7.4"
-
   }
 }
