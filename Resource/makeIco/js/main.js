@@ -1,8 +1,13 @@
+var min = require("imagemin");
 var dir = require("./js/dir.js");
 var config = require("./js/config.js");
 var strli = "";
 //48,72,96,144
 // var sizes = [48, 72, 96, 114, 144],
+
+document.querySelector(".fxed").innerHTML = JSON.stringify(min);
+
+
 var step = 0,
 	base64Data = "",
 	timer;
@@ -45,7 +50,6 @@ holder.ondrop = function(e) {
 	e.preventDefault();
 	files = e.dataTransfer.files;
 	files = objToArry(files);
-	// document.querySelector(".fxed").innerHTML = window.localStorage;
 	if (files.length > 1) {
 		state.innerHTML = "每次只能处理一张图片,请重试";
 		return;
