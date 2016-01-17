@@ -1,4 +1,5 @@
-var min = require("imagemin");
+
+// var min = require("./node_modules/imagemin/index.js");
 var dir = require("./js/dir.js");
 var config = require("./js/config.js");
 var strli = "";
@@ -21,6 +22,10 @@ if (typeof window.FileReader === 'undefined') {
 } else {
 	state.className = 'success';
 }
+
+
+ // document.querySelector(".fxed").innerHTML =JSON.stringify(min);
+
 
 qico.addEventListener("click", function() {
 	strli = "";

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>读取题目</title>
+	<style>
+	   *{margin: 0; padding: 0}
+		body{
+			padding: 10px;
+
+		}
+		p{font-size: 16px; padding: 10px;}
+		input{height: 35px; border-radius: 3px; border:1px solid #ccc;}
+		.ipt{width: 90%}
+		#btn{width: 9%; background-color: #0c0;}
+		#maxquestion{color: #c00;}
+	</style>
+</head>
+<body>
+   <script>
+        var gui = require("nw.gui");
+   		var win = gui.Window.open('https://github.com', {
+			  focus: true
+			});
+   		console.log(win);
+   		win.show();
+   </script>
+</body>
+</html>
