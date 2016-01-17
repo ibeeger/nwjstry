@@ -21,7 +21,9 @@
         var $ = require("jQuery")
         var gui = require("nw.gui");
    		var win = gui.Window.open('http://user.mofangge.com/Account/Login/', {
-			  focus: true
+			  focus: true,
+           width:800,
+           height:600
 			});
    		   console.log(win.cookies);
    		   
@@ -36,15 +38,17 @@
    			,function(){
    				console.log(arguments);
    			win.cookies.getAll({domain:".mofangge.com"},function(c){
-   				console.log(c);
+   				 win.window.location.href = "http://www.mofangge.com/app/highfren/hfinfo.aspx?sid=524&sub=02&zm=2&sna=%E4%B8%A4%E8%A7%92%E5%92%8C%E4%B8%8E%E5%B7%AE%E7%9A%84%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%8F%8A%E4%B8%89%E8%A7%92%E6%81%92%E7%AD%89%E5%8F%98%E6%8D%A2&pn=1"
    			});
    			
    			});
-   		win.on("loaded",function(){
-   			
+   		win.on("document-end",function(){
    			var doc = win.window.document;
-
-   			$(doc).find("body").css("background-color","#c00");
+            $(doc).find(".head").hide();
+            $(doc).find(".bgcolorshow").hide();
+            $(doc).find(".ytjxRight").hide();
+            $(doc).find(".bigContent").css({width:"auto"});
+   			$(doc).find(".quelistbg").css("background-color","#ccc");
    		})
 
    </script>
