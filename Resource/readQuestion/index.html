@@ -18,12 +18,35 @@
 </head>
 <body>
    <script>
+        var $ = require("jQuery")
         var gui = require("nw.gui");
-   		var win = gui.Window.open('https://github.com', {
+   		var win = gui.Window.open('http://user.mofangge.com/Account/Login/', {
 			  focus: true
 			});
-   		console.log(win);
+   		   console.log(win.cookies);
+   		   
    		win.show();
+   		win.cookies.set({
+   			url:"http://user.mofangge.com/Account/Login/",
+   			name:"mfg_membersgin",
+   			value:"2D7D781092ECDE7FBC45BD078D26080A5D039BD380D0D2BF3387D8B5191D5A3B233AF9D732A91C9C28B92EBA34882A4347B96732E379FC87B76C9760643A47D553AD331F74F8D01D964C19F327D3045A",
+   			path:"/",
+   			domain:".mofangge.com"   			
+   			}
+   			,function(){
+   				console.log(arguments);
+   			win.cookies.getAll({domain:".mofangge.com"},function(c){
+   				console.log(c);
+   			});
+   			
+   			});
+   		win.on("loaded",function(){
+   			
+   			var doc = win.window.document;
+
+   			$(doc).find("body").css("background-color","#c00");
+   		})
+
    </script>
 </body>
 </html>
