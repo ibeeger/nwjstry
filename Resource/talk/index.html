@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>会课</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   <div class="debugger"></div>
+	<div id="start">
+		<h4><span id="close">关闭</span>会课</h4>
+		<input type="text" placeholder="请输入10位roomid" class="iptuinfo" id="iptroomid">
+		<input type="text" placeholder="请输入您的姓名"  class="iptuinfo"  id="username">
+		<span class="btn_enter" onclick="show()">进入</span>
+	</div>
+	<script src="js/local.js"></script>
+	<script>
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+		window.onload = function() {
+		  gui.Window.get().show();
+		}
+
+		function show() {
+			var roomid = document.getElementById('iptroomid').value;
+			var username = document.getElementById('username').value;
+			if (!roomid) {
+				alert("请输入10位roomid");
+				return ;
+			}
+			if (!username) {
+				alert("请输入您的姓名");
+				return ;
+			}
+			Db.save("roomid",roomid || "hello");
+			Db.save("username",username || "user"+(Math.random()*50000000).toString(32).replace(".",""))
+
+			var new_win = gui.Window.open('./char.html',{
+				  position: 'center',
+				  width: 800,
+				  height: 500,
+				  toolbar:false,
+				  frame:false
+			});
+			
+			win.close();
+		}
+	</script>
+	<script src="js/Event.js"></script>
+	<script src="http://works.ibeeger.com/nodewebkit/js/menu.js"></script>
+</body>
+</html>

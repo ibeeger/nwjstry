@@ -1,0 +1,36 @@
+*{margin: 0px; padding: 0px; font-family: Verdana,Georgia,sans-serif; outline: none;-moz-user-select:none;-webkit-user-select:none}
+body{font-size: 14px;} h4{font-size: 18px; position: relative; height: 50px; line-height: 50px; text-align: center; color: #fff;  background-color: #12b7f5}
+section{
+	height: 370px;
+	overflow-y:auto;
+	position: relative;
+
+}
+
+h4 span{display: inline-block; cursor: pointer; position: absolute; right: 5px; top: 5px; height: 30px; line-height: 30px; color: #c00; border-radius: 20px; background-color: #fff; font-size: 14px; padding: 5px;}
+.info{position: absolute; text-align: center;  width: 80%; display: none; top: 10px; left: 10%; box-shadow: 0 0 5px #999; background-color: #fff; border-radius: 5px; height: 30px; line-height: 30px;}
+section p{padding:10px 5px;}
+section span{
+	color:#c00;
+	font-weight: bold;
+}
+section strong{border-radius: 3px; border:1px solid #ccc; padding:3px 5px; font-weight: normal;}
+.debugger{position: fixed; left: 0; bottom: 0; z-index: 9;}
+a{text-decoration: none;}
+#start{text-align: center;}
+#start h4{margin-bottom: 80px}
+
+.btn_enter{display: inline-block;line-height: 40px; cursor: pointer; width: 400px; height: 40px; font-size: 16px; color: #fff; background-color: #12b7f5}
+div.ctrl{
+	height: 30px;
+	background-color: #f0f0f0;
+}
+.ctrl span{
+	display: inline-block; border-radius: 5px; cursor: pointer; background: #12b7f5; margin-left: 5px; height: 26px; min-width: 26px; 
+}
+.iptuinfo{
+	width: 400px; display: block; margin: 0 auto 20px; height: 50px; padding: 10px; font-size: 16px; box-sizing: border-box;
+}
+input#iptxt{
+	width: 100%; display: block; height: 50px; padding: 10px; font-size: 16px; box-sizing: border-box;
+}

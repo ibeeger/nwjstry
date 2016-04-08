@@ -1,0 +1,27 @@
+{
+  "main": "index.html",
+  "name": "willclass",
+  "description": "demo app of NW.js",
+  "version": "0.1.0",
+  "keywords": [ "demo", "NW.js" ],
+  "window": {
+    "title": "会课聊天",
+    "icon": "ico.png",
+    "toolbar": false,
+    "frame": false,
+    "width": 800,
+    "height": 500,
+    "position": "center",
+    "min_width": 400,
+    "min_height": 500,
+    "max_width": 800,
+    "max_height": 500,
+    "show":false
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+    "deck":"latest"
+  }
+}

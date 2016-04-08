@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>会课</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="main">
+		<h4><span id="close">关闭</span>会课</h4>
+		<section id="msg">
+			<div class="info" id="info"></div>
+		</section>
+		<div class="ctrl"><span id="reconnect" style="display: none;">重新链接</span></div>
+		<input placeholder="输入内容" name="chat" id="iptxt" />
+	</div>
+	<script>
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+	</script>
+	<script src="js/Event.js"></script>
+	<script src="js/local.js"></script>
+	<script src="js/main.js"></script>
+	<script src="http://works.ibeeger.com/nodewebkit/js/menu.js"></script>
+</body>
+</html>
