@@ -6,8 +6,9 @@ section{
 	position: relative;
 
 }
+body h4{-webkit-app-region: drag}
 
-h4 span{display: inline-block; cursor: pointer; position: absolute; right: 5px; top: 5px; height: 30px; line-height: 30px; color: #c00; border-radius: 20px; background-color: #fff; font-size: 14px; padding: 5px;}
+h4 span{display: inline-block; cursor: pointer;-webkit-app-region: none; position: absolute; right: 5px; top: 5px; height: 30px; line-height: 30px; color: #c00; border-radius: 20px; background-color: #fff; font-size: 14px; padding: 5px;}
 .info{position: absolute; text-align: center;  width: 80%; display: none; top: 10px; left: 10%; box-shadow: 0 0 5px #999; background-color: #fff; border-radius: 5px; height: 30px; line-height: 30px;}
 section p{padding:10px 5px;}
 section span{
