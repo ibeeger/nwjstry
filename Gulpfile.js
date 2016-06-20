@@ -117,9 +117,33 @@ gulp.task('talks', function() {
     });
 });
 
+gulp.task('anwser', function() {
+    var nw = new NwBuilder({
+        version: '0.11.0',
+        files: './Resource/AnswerSheet/**',
+        macIcns: './Resource/AnswerSheet/ico.icns',
+        // winIco: './Resource/talk/ico.icns',
+        macPlist: {
+            mac_bundle_id: 'answer'
+        },
+        // platforms: ['win32', 'win64', 'osx32', 'osx64']
+        platforms:["osx64"]
+    });
+
+    // Log stuff you want
+    nw.on('log', function(msg) {
+        gutil.log('nw-builder', msg);
+    });
+
+    // Build returns a promise, return it so the task isn't called in parallel
+    return nw.build().catch(function(err) {
+        gutil.log('nw-builder', err);
+    });
+});
+
 gulp.task('default', ['nw']);
 gulp.task('ico', ['makeico']);
-gulp.task('pcss', ['picss']);
+gulp.task('aw', ['anwser']);
 // gulp.task('talk', ['talks']);
 
 gulp.task('read', ['readQuestion']);
