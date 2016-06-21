@@ -126,8 +126,8 @@ gulp.task('anwser', function() {
         macPlist: {
             mac_bundle_id: 'answer'
         },
-        // platforms: ['win32', 'win64', 'osx32', 'osx64']
-        platforms:["osx64"]
+        platforms: ['win32', 'win64', 'osx32', 'osx64']
+        // platforms:["osx64"]
     });
 
     // Log stuff you want
