@@ -1,0 +1,17 @@
+*{margin: 0;padding:0; outline: none; list-style: none;}
+img{border:0 none;}
+.checkupdata{text-align: center; font-size: 12px; height: 100px; box-sizing: border-box; padding-top: 80px; color: #999; background-color: #ccc;}
+.editem{clear: both; box-sizing: border-box; padding: 10px; overflow: hidden;}
+.editem dt{width: 15%; float: left;}
+.editem dd{width: 85%; float: left;}
+input[type='radio']{
+	margin: 0 5px;
+}
+input[type='text']{
+	border:1px solid #ccc;
+	width: 90%; height: 30px;
+}
+textarea{
+	border:1px solid #ccc;
+	width: 90%; height: 100px;
+}

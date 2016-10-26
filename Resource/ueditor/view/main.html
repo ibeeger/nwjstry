@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>提交信息</title>
+	<link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+	<div id="main"></div>
+
+	<script type="text/template" id="mhtml">
+		#foreach($big in $!{config})
+			<dl class='editem'>
+				<dt>$!{big.name}</dt>
+				<dd>
+				 #if($!{big.type}=='radio')
+					#foreach($item in $!{big.lth})
+						<input type="radio" name="$!{big.type}">$!{item.name}
+					#end
+				#end
+				
+				#if( $!{big.type} == 'textarea')
+					<textarea name="{{key}}" id="" cols="30" rows="10"></textarea>
+				#end
+
+				#if( $!{big.type} == 'text')
+					<input type="text" name='$!{big.type}'>
+				#end
+
+				#if($!{big.type}=='ueditor')
+					<div class="ueditor" id="ueditor$!{big.key}" data-type="ueditor"></div>
+				#end
+
+				</dd>
+			</dl> 
+		#end
+	</script>
+	<script src="../dist/utf8-php/ueditor.config.js?v=1"></script>
+	<script src="../dist/utf8-php/ueditor.all.js"></script>
+	<script src="../dist/pluts.js"></script>
+	<script src="../dist/dailog.js"></script>
+	<script src="../module/initConfig.js"></script>
+	
+	
+</body>
+</html>
