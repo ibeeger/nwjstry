@@ -8,13 +8,16 @@
 			position: 'center',
 			width: 900,
 			height: 600,
-			toolbar: false,
-			frame: true
+			toolbar: true,
+			frame: true,
+			min_width:900,
+			min_height:600,
+			max_width:900,
+			max_height:600,
+
 		});
 		win.close();
 	}
-
-
 
 	//启动方法
 	function startup(data) {
@@ -30,6 +33,7 @@
 					showEdit();
 			}
 		} catch (e) {
+			console.log(e)
 			showEdit();
 		}
 
