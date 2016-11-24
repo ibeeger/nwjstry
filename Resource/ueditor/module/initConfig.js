@@ -2,7 +2,7 @@
  * @Author: ibeeger
  * @Date:   2016-10-26 15:03:43
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-10-27 17:39:36
+ * @Last Modified time: 2016-10-27 18:22:02
  */
 
 'use strict';
@@ -14,6 +14,8 @@
 	var client = require("./module/http_client.js");
 	client.setUa(navigator.userAgent);
 	client.setHost("local.ushow.com");
+
+	var doms = [];
 
 	function initConfig(data) {
 		try {
