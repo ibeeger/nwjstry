@@ -1,7 +1,10 @@
 (function() {
 	var client = require("./module/http_client.js");
 	client.setUa(navigator.userAgent);
-	client.setHost("local.ushow.com");
+	client.setHost(api.host);
+	client.setPort(api.port);
+
+	console.log(api)
 
 	function showEdit() {
 		var new_win = gui.Window.open('./view/main.html', {
@@ -10,10 +13,10 @@
 			height: 600,
 			toolbar: true,
 			frame: true,
-			min_width:900,
-			min_height:600,
-			max_width:900,
-			max_height:600,
+			min_width: 900,
+			min_height: 600,
+			max_width: 900,
+			max_height: 600,
 
 		});
 		win.close();
@@ -34,10 +37,9 @@
 			}
 		} catch (e) {
 			console.log(e)
-			showEdit();
+			setTimeout(showEdit,1000);
 		}
-
 	}
 
-	client.post("/ueditor/updata", {}, startup);
+	client.post(api.updataUrl, {}, startup);
 })()

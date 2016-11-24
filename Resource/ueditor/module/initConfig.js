@@ -2,7 +2,7 @@
  * @Author: ibeeger
  * @Date:   2016-10-26 15:03:43
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-10-27 18:22:02
+ * @Last Modified time: 2016-11-24 19:49:29
  */
 
 'use strict';
@@ -12,11 +12,15 @@
 	var html = document.getElementById('mhtml').innerHTML;
 	var Vel = require("velocityjs");
 	var client = require("./module/http_client.js");
+	var data;
 	client.setUa(navigator.userAgent);
-	client.setHost("local.ushow.com");
+	client.setHost(api.host);
+	client.setPort(api.port);
+
+	var ue;
 
 	var doms = [];
-
+	//初始化结构
 	function initConfig(data) {
 		try {
 			data = JSON.parse(data);
@@ -24,7 +28,7 @@
 				document.getElementById('main').innerHTML = Vel.render(html, data, {});
 				for (var i = 0; i < data.config.length; i++) {
 					if (data.config[i].type == 'ueditor') {
-						UE.getEditor("ueditor" + data.config[i].key);
+						ue = UE.getEditor("ueditor" + data.config[i].key);
 					}
 				};
 				fs.mkdir(_path, "777", function() {
@@ -32,24 +36,58 @@
 				});
 			}
 		} catch (e) {
-			console.log(e);
+			alert("第一次打开必须在联网状态下！");
+			window.close();
 		}
 	};
 
 	try {
-		var data = fs.readFileSync(_path + "config.json", 'utf8');
+		data = fs.readFileSync(_path + "config.json", 'utf8');
 		data = JSON.parse(data);
 		document.getElementById('main').innerHTML = Vel.render(html, data, {});
 		for (var i = 0; i < data.config.length; i++) {
 			if (data.config[i].type == 'ueditor') {
-				UE.getEditor("ueditor" + data.config[i].key);
+				ue = UE.getEditor("ueditor" + data.config[i].key);
 			}
 		};
+
 	} catch (e) {
-		console.log(e)
 		console.log("create");
-		client.post("/ueditor/init", {}, initConfig);
+		client.post(api.initUrl, {}, initConfig);
 	}
+	window.onload = function() {
+		var btn = document.getElementById('submit');
+		btn.addEventListener("click", function() {
+			var content = ue.getContent(); //内容
+			var json = {};
+			for (var i = 0; i < data.config.length; i++) {
+				var list = data.config[i];
+				
+				if (list["type"] == 'ueditor') {
+					json[list["key"]] = content;
+				} else {
+					json[list["key"]]= document.getElementById(list["key"]).value;
+				};
+				if (json[list["key"]].trim()=="") {
+					alert(list["name"]+"不能为空");
+					return;
+				}
+			};
+			json["token"] = data["key"];
+
+			$.ajax({
+				url:data.server["host"]+data.server["url"],
+				data:json,
+				method:data.server["method"],
+				success:function(data){
+					console.log(data);
+					showQr();
+					document.getElementById('main').setAttribute("class","blur");
+				}
+			})
+		}, false);
+	};
+
 
 
 })()

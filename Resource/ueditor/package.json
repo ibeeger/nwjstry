@@ -1,6 +1,6 @@
 {
   "main": "index.html",
-  "name": "willclass",
+  "name": "ueditor",
   "description": "demo app of NW.js",
   "version": "0.1.0",
   "keywords": [
@@ -11,16 +11,16 @@
   "window": {
     "title": "编辑器",
     "icon": "ico.png",
-    "toolbar": true,
-    "frame": true,
-    "width": 800,
-    "height": 500,
+    "toolbar": false,
+    "frame": false,
+    "width": 200,
+    "height": 136,
     "position": "center",
-    "transparent": false,
-    "min_width": 800,
-    "min_height": 500,
-    "max_width": 800,
-    "max_height": 500,
+    "transparent": true,
+    "min_width": 200,
+    "min_height": 136,
+    "max_width": 200,
+    "max_height": 136,
     "show": false
   },
   "webkit": {

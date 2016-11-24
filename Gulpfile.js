@@ -117,16 +117,16 @@ gulp.task('talks', function() {
     });
 });
 
-gulp.task('anwser', function() {
+gulp.task('ueditor', function() {
     var nw = new NwBuilder({
         version: '0.11.0',
-        files: './Resource/AnswerSheet/**',
-        macIcns: './Resource/AnswerSheet/ico.icns',
-        // winIco: './Resource/talk/ico.icns',
+        files: './Resource/ueditor/**',
+        macIcns: './Resource/ueditor/ico.icns',
+        // winIco: './Resource/talk/icon.icns',
         macPlist: {
-            mac_bundle_id: 'answer'
+            mac_bundle_id: 'ueditor'
         },
-        platforms: ['win32', 'win64', 'osx32', 'osx64']
+        platforms: ['win64',  'osx64']
         // platforms:["osx64"]
     });
 
@@ -143,7 +143,7 @@ gulp.task('anwser', function() {
 
 gulp.task('default', ['nw']);
 gulp.task('ico', ['makeico']);
-gulp.task('aw', ['anwser']);
+gulp.task('write', ['ueditor']);
 // gulp.task('talk', ['talks']);
 
 gulp.task('read', ['readQuestion']);

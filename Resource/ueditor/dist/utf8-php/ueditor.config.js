@@ -26,20 +26,20 @@
     window.UEDITOR_CONFIG = {
 
         //为编辑器实例添加一个路径，这个不能被注释
-        UEDITOR_HOME_URL: URL
+        UEDITOR_HOME_URL:URL
 
         // 服务器统一请求接口路径
-        , serverUrl: "/test"
+        , serverUrl: "/write"
 
         , toolbars:[[
             // 'source',
             'undo','redo','removeformat','copytext','cuttext','paste','|',
             'bold','italic','underline','backcolor','subscript','superscript','|',
             'justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','lineheight','|',
-            'simpleupload','inserttable','tab','formula','latex','wordimage'
+            'simpleupload','wordimage'
         ]]
-        , initialFrameHeight:'300'
-        , initialFrameWidth:'670'
+        , initialFrameHeight:'400'
+        // , initialFrameWidth:'670'
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
         // , toolbars: [[
@@ -83,7 +83,7 @@
 
         //,textarea:'editorValue' // 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值
 
-        //,initialContent:'欢迎使用ueditor!'    //初始化编辑器的内容,也可以通过textarea/script给值，看官网例子
+        ,initialContent:'这里写正文'    //初始化编辑器的内容,也可以通过textarea/script给值，看官网例子
 
         //,autoClearinitialContent:true //是否自动清除编辑器初始内容，注意：如果focus属性设置为true,这个也为真，那么编辑器一上来就会触发导致初始化的内容看不到了
 
@@ -93,7 +93,7 @@
         //,initialStyle:'p{line-height:1em}'//编辑器层级的基数,可以用来改变字体等
 
         //,iframeJsUrl: '' //给编辑区域的iframe引入一个js文件
-        ,iframeCssUrl: '../dist/katex.min.css?city='+Math.random() //给编辑区域的iframe引入一个css文件
+        // ,iframeCssUrl: '../dist/katex.min.css?city='+Math.random() //给编辑区域的iframe引入一个css文件
 
         //indentValue
         //首行缩进距离,默认是2em
@@ -312,7 +312,7 @@
         //,toolbarTopOffset:400
 
         //设置远程图片是否抓取到本地保存
-        ,catchRemoteImageEnable: true //设置是否抓取远程图片
+        // ,catchRemoteImageEnable: true //设置是否抓取远程图片
 
         //pageBreakTag
         //分页标识符,默认是_ueditor_page_break_tag_

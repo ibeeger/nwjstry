@@ -2,7 +2,7 @@
  * @Author: willclass
  * @Date:   2015-10-28 14:41:09
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-10-26 15:14:45
+ * @Last Modified time: 2016-11-24 19:24:24
  */
 
 'use strict';
@@ -17,16 +17,16 @@ var client = {
 	post: function(url, data, callback) {
 		var _data = JSON.stringify(data),
 			_datalth = Buffer.byteLength(_data, 'utf8');
-		console.log(url);
 		var _options = {
+			protocol: "http:",
 			hostname: host,
 			port: port,
 			path: url,
 			method: method,
 			headers: {
 				 'User-Agent': ua,
-			     // 'Content-Type': type,
-				// 'Content-Length': _datalth,
+			     'Content-Type': type,
+				'Content-Length': _datalth,
 				// 'Cookie': cookie
 			}
 		};
