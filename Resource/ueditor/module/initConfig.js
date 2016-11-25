@@ -2,66 +2,33 @@
  * @Author: ibeeger
  * @Date:   2016-10-26 15:03:43
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-11-25 13:44:12
+ * @Last Modified time: 2016-11-25 15:56:30
  */
 
 'use strict';
 (function() {
+	var gui = require('nw.gui');
 	var fs = require("fs");
 	var _path = !process.env.HOME ? process.env.ProgramFiles + "/ueditor/" : process.env.HOME + "/Library/ueditor/";
 	var html = document.getElementById('mhtml').innerHTML;
 	var Vel = require("velocityjs");
 	var client = require("./module/http_client.js");
-	var data;
+	var Cdata;
 	client.setUa(navigator.userAgent);
 	client.setHost(api.host);
 	client.setPort(api.port);
 
 	var ue;
 
-	var doms = [];
-	//初始化结构
-	function initConfig(data) {
-		try {
-			data = JSON.parse(data);
-			if (data.code == 0) {
-				document.getElementById('main').innerHTML = Vel.render(html, data, {});
-				for (var i = 0; i < data.config.length; i++) {
-					if (data.config[i].type == 'ueditor') {
-						ue = UE.getEditor("ueditor" + data.config[i].key);
-					}
-				};
-				fs.mkdir(_path, "777", function() {
-					fs.writeFileSync(_path + "config.json", JSON.stringify(data), 'utf8');
-				});
-			}
-		} catch (e) {
-			alert("第一次打开必须在联网状态下！");
-			window.close();
-		}
-	};
+	function ready() {
+		var btn = $('#submit');
+		var adv = $('#adv');
 
-	try {
-		data = fs.readFileSync(_path + "config.json", 'utf8');
-		data = JSON.parse(data);
-		document.getElementById('main').innerHTML = Vel.render(html, data, {});
-		for (var i = 0; i < data.config.length; i++) {
-			if (data.config[i].type == 'ueditor') {
-				ue = UE.getEditor("ueditor" + data.config[i].key);
-			}
-		};
-
-	} catch (e) {
-		console.log("create");
-		client.post(api.initUrl, {}, initConfig);
-	}
-	window.onload = function() {
-		var btn = document.getElementById('submit');
-		var adv = document.getElementById('adv');
-
-		btn.addEventListener("click", function() {
+		btn.on("click", function() {
+			console.log("提交")
 			var content = ue.getContent(); //内容
 			var json = {};
+			var data = Cdata;
 			for (var i = 0; i < data.config.length; i++) {
 				var list = data.config[i];
 
@@ -76,31 +43,72 @@
 				}
 			};
 			json["token"] = data["key"];
-
+			document.getElementById('main').setAttribute("class", "blur");
 			$.ajax({
 				url: data.server["host"] + data.server["url"],
 				data: json,
 				// contentType:"application/json",
 				method: data.server["method"],
 				success: function(rst) {
-					rst = typeof rst =='string' ? JSON.parse(rst) : rst;
+					rst = typeof rst == 'string' ? JSON.parse(rst) : rst;
 					if (rst.code == 0) {
-						showQr(data["key"],rst.data);
-						document.getElementById('main').setAttribute("class", "blur");
-					}else{
+						showQr(data["key"], rst.data);
+					} else {
 						alert("保存失败!");
+						document.getElementById('main').removeAttribute("class", "blur");
 					}
-					
+
 				}
 			})
-		}, false);
+		});
 
 
-		adv.addEventListener("click",function(){
+		adv.on("click", function() {
 			gui.Shell.openExternal("http://works.ibeeger.com/softs/feedback.html?from=ueditor");
-		},false)
+		})
 
 	};
+
+	var doms = [];
+	//初始化结构
+	function initConfig(data) {
+		try {
+			data = JSON.parse(data);
+			Cdata = data;
+			if (data.code == 0) {
+				document.getElementById('main').innerHTML = Vel.render(html, data, {});
+				for (var i = 0; i < data.config.length; i++) {
+					if (data.config[i].type == 'ueditor') {
+						ue = UE.getEditor("ueditor" + data.config[i].key);
+					}
+				};
+				fs.mkdir(_path, "777", function() {
+					fs.writeFileSync(_path + "config.json", JSON.stringify(data), 'utf8');
+					ready();
+				});
+			}
+		} catch (e) {
+			alert("第一次打开必须在联网状态下！");
+			window.close();
+		}
+
+	};
+
+	try {
+		data = fs.readFileSync(_path + "config.json", 'utf8');
+		data = JSON.parse(data);
+		Cdata = data;
+		document.getElementById('main').innerHTML = Vel.render(html, data, {});
+		for (var i = 0; i < data.config.length; i++) {
+			if (data.config[i].type == 'ueditor') {
+				ue = UE.getEditor("ueditor" + data.config[i].key);
+			}
+		};
+		window.onload = ready;
+	} catch (e) {
+		console.log("create");
+		client.post(api.initUrl, {}, initConfig);
+	}
 
 
 

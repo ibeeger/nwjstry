@@ -10,13 +10,12 @@
 			position: 'center',
 			width: 900,
 			height: 600,
-			toolbar: true,
+			toolbar: false,
 			frame: true,
 			min_width: 900,
 			min_height: 600,
 			max_width: 900,
-			max_height: 600,
-
+			max_height: 600
 		});
 		win.close();
 	}
@@ -34,7 +33,7 @@
 					window.close();
 					break;
 				default:
-					showEdit();
+					setTimeout(showEdit,1000);
 			}
 		} catch (e) {
 			setTimeout(showEdit,1000);

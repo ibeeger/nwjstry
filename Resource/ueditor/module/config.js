@@ -2,13 +2,13 @@
  * @Author: ibeeger
  * @Date:   2016-11-24 19:16:01
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-11-25 11:58:10
+ * @Last Modified time: 2016-11-25 13:58:25
  */
 
 'use strict';
 
 var api = {
-	host: "local.ushow.com",
+	host: "www.ibeeger.com",
 	port: 80,
 	updataUrl: "/ueditor/updata",
 	initUrl: "/ueditor/init",
