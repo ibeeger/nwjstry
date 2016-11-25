@@ -37,5 +37,9 @@ input[type='button']{
         -ms-filter: blur(10px);    
             filter: blur(10px); 
 }
-#qr{width: 188px; height: 218px; z-index: 99; position: absolute; left: 50%; top: 50%; margin: -100px 0 0 -100px; background-color: #fff; text-align: center;}
+#qr{width: 200px; height: 238px; z-index: 99; position: absolute; left: 50%; top: 50%; margin: -120px 0 0 -100px; background-color: #fff; text-align: center;}
 .bgpop{position: absolute; z-index:90; width:900px; height: 600px; left: 0; top: 0; display: none; right:0;bottom: 0;}
+
+.footdl dt{float: left; padding-left: 15px;}
+.footdl dt input{float: left;}
+.footdl dd {float: right;}

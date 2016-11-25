@@ -2,7 +2,7 @@
  * @Author: ibeeger
  * @Date:   2016-11-24 19:16:01
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-11-24 19:59:30
+ * @Last Modified time: 2016-11-25 11:58:10
  */
 
 'use strict';
@@ -15,14 +15,14 @@ var api = {
 };
 
 
-function showQr() {
+function showQr(token,id) {
 	var layer = document.getElementById("bgpop");
 	layer.style.display="block"
 
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
-		text: "http://jindo.dev.naver.com/collie",
-		width: 188,
-		height: 188,
+		text: "http://www.ibeeger.com/ueditor/"+token+"/"+id,
+		width: 200,
+		height: 200,
 		colorDark: "#000000",
 		colorLight: "#ffffff",
 		correctLevel: QRCode.CorrectLevel.H

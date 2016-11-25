@@ -2,7 +2,7 @@
  * @Author: ibeeger
  * @Date:   2016-10-26 15:03:43
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-11-24 19:49:29
+ * @Last Modified time: 2016-11-25 13:44:12
  */
 
 'use strict';
@@ -57,35 +57,49 @@
 	}
 	window.onload = function() {
 		var btn = document.getElementById('submit');
+		var adv = document.getElementById('adv');
+
 		btn.addEventListener("click", function() {
 			var content = ue.getContent(); //内容
 			var json = {};
 			for (var i = 0; i < data.config.length; i++) {
 				var list = data.config[i];
-				
+
 				if (list["type"] == 'ueditor') {
 					json[list["key"]] = content;
 				} else {
-					json[list["key"]]= document.getElementById(list["key"]).value;
+					json[list["key"]] = document.getElementById(list["key"]).value;
 				};
-				if (json[list["key"]].trim()=="") {
-					alert(list["name"]+"不能为空");
+				if (json[list["key"]].trim() == "") {
+					alert(list["name"] + "不能为空");
 					return;
 				}
 			};
 			json["token"] = data["key"];
 
 			$.ajax({
-				url:data.server["host"]+data.server["url"],
-				data:json,
-				method:data.server["method"],
-				success:function(data){
-					console.log(data);
-					showQr();
-					document.getElementById('main').setAttribute("class","blur");
+				url: data.server["host"] + data.server["url"],
+				data: json,
+				// contentType:"application/json",
+				method: data.server["method"],
+				success: function(rst) {
+					rst = typeof rst =='string' ? JSON.parse(rst) : rst;
+					if (rst.code == 0) {
+						showQr(data["key"],rst.data);
+						document.getElementById('main').setAttribute("class", "blur");
+					}else{
+						alert("保存失败!");
+					}
+					
 				}
 			})
 		}, false);
+
+
+		adv.addEventListener("click",function(){
+			gui.Shell.openExternal("http://works.ibeeger.com/softs/feedback.html?from=ueditor");
+		},false)
+
 	};
 
 

@@ -3,8 +3,7 @@
 	client.setUa(navigator.userAgent);
 	client.setHost(api.host);
 	client.setPort(api.port);
-
-	console.log(api)
+	var gui = require('nw.gui');
 
 	function showEdit() {
 		var new_win = gui.Window.open('./view/main.html', {
@@ -30,13 +29,14 @@
 			};
 			switch (data.data.up) {
 				case 1:
-					alert("升级中");
+					alert("有新版本需要升级！");
+					gui.Shell.openExternal(data.data.url);
+					window.close();
 					break;
 				default:
 					showEdit();
 			}
 		} catch (e) {
-			console.log(e)
 			setTimeout(showEdit,1000);
 		}
 	}
