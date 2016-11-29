@@ -49,7 +49,7 @@ gulp.task('makeico', function() {
 
 gulp.task('readQuestion', function() {
     var nw = new NwBuilder({
-        version: '0.11.0',
+        version: '0.14.6',
         files: './Resource/readQuestion/**',
         macIcns: './Resource/readQuestion/ico.icns',
         macPlist: {
@@ -119,10 +119,10 @@ gulp.task('talks', function() {
 
 gulp.task('ueditor', function() {
     var nw = new NwBuilder({
-        version: '0.11.0',
+        version: '0.18.8',
         files: './Resource/ueditor/**',
         macIcns: './Resource/ueditor/ico.icns',
-        // winIco: './Resource/talk/icon.icns',
+        winIco: './Resource/ueditor/ico.icns',
         macPlist: {
             mac_bundle_id: 'ueditor'
         },

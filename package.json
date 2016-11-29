@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "gulp-util": "^2.2.14",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "nw-builder": "^2.2.7"
   }
 }

@@ -36,7 +36,7 @@
             'undo','redo','removeformat','copytext','cuttext','paste','|',
             'bold','italic','underline','backcolor','subscript','superscript','|',
             'justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','lineheight','|',
-            'simpleupload','wordimage'
+            'wordimage'
         ]]
         , initialFrameHeight:'400'
         // , initialFrameWidth:'670'
