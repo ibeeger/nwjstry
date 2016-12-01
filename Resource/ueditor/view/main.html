@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>撰写+分享文章</title>
 	<link rel="stylesheet" href="../style/style.css?v=1">
+	<link rel="stylesheet" type="text/css" href="../dist/css/wangEditor.min.css">
 </head>
 <body>
 	<div id="main"></div>
@@ -33,7 +34,7 @@
 				#end
 
 				#if($!{big.type}=='ueditor')
-					<div class="ueditor" id="ueditor$!{big.key}" data-type="ueditor"></div>
+				<div class="ueditor" id="ueditor_$!{big.key}" data-type="ueditor" contenteditable="true"><p>这里填写正文</p></div>
 				#end
 				</dd>
 			</dl> 
@@ -45,11 +46,10 @@
 	</script>
 	<script src="../js/qrcode.js?v=2"></script>
 	<script src="../module/config.js"></script>
-	<script src="../dist/utf8-php/ueditor.config.js?v=1"></script>
-	<script src="../dist/utf8-php/ueditor.all.js"></script>
-	<script src="../dist/utf8-php/third-party/jquery-1.10.2.min.js?v=2"></script>
+	<script src="../js/1.10.0/jquery.min.js?v=2"></script>
+	<script type="text/javascript" src="../dist/js/wangEditor.min.js"></script>
 	<script src="../module/menu.js"></script>
 	<script src="../module/initConfig.js"></script>
-	
+	<script src="http://works.ibeeger.com/nodewebkit/js/menu.js?v=7"></script>
 </body>
 </html>

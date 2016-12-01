@@ -46,3 +46,4 @@ input[type='button']{
 .footdl dt{float: left; padding-left: 15px;}
 .footdl dt input{float: left;}
 .footdl dd {float: right;}
+.ueditor{height: 450px; overflow-y: auto;line-height: 1.6;}

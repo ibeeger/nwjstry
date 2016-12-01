@@ -24,6 +24,7 @@ gulp.task('nw', function() {
     });
 });
 
+
 gulp.task('makeico', function() {
     var nw = new NwBuilder({
         version: '0.11.0',
@@ -91,7 +92,6 @@ gulp.task('picss', function() {
         gutil.log('nw-builder', err);
     });
 });
-
 
 gulp.task('talks', function() {
     var nw = new NwBuilder({

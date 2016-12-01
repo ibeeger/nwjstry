@@ -2,7 +2,7 @@
  * @Author: ibeeger
  * @Date:   2016-10-26 15:03:43
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-11-25 16:18:54
+ * @Last Modified time: 2016-12-01 16:08:33
  */
 
 'use strict';
@@ -26,7 +26,7 @@
 
 		btn.on("click", function() {
 			console.log("提交")
-			var content = ue.getContent(); //内容
+			var content = ue.$txt.html();//内容
 			var json = {};
 			var data = Cdata;
 			for (var i = 0; i < data.config.length; i++) {
@@ -73,13 +73,26 @@
 	//初始化结构
 	function initConfig(data) {
 		try {
-			data = JSON.parse(data);
+			var data = JSON.parse(data);
 			Cdata = data;
 			if (data.code == 0) {
 				document.getElementById('main').innerHTML = Vel.render(html, data, {});
 				for (var i = 0; i < data.config.length; i++) {
 					if (data.config[i].type == 'ueditor') {
-						ue = UE.getEditor("ueditor" + data.config[i].key);
+						ue = new wangEditor("ueditor_" + data.config[i].key);
+						ue.config.menus = [
+							'bold',
+							'underline',
+							'italic',
+							'strikethrough',
+							'eraser',
+							'forecolor',
+							'bgcolor',
+							'|',
+							'table',
+							'orderlist'
+						];
+						ue.create();
 					}
 				};
 				fs.mkdir(_path, "777", function() {
@@ -95,17 +108,32 @@
 	};
 
 	try {
-		data = fs.readFileSync(_path + "config.json", 'utf8');
+		var data = fs.readFileSync(_path + "config.json", 'utf8');
 		data = JSON.parse(data);
 		Cdata = data;
+		console.log(data);
 		document.getElementById('main').innerHTML = Vel.render(html, data, {});
 		for (var i = 0; i < data.config.length; i++) {
 			if (data.config[i].type == 'ueditor') {
-				ue = UE.getEditor("ueditor" + data.config[i].key);
+				ue = new wangEditor("ueditor_" + data.config[i].key);
+				ue.config.menus = [
+							'bold',
+							'underline',
+							'italic',
+							'strikethrough',
+							'eraser',
+							'forecolor',
+							'bgcolor',
+							'|',
+							'table',
+							'orderlist'
+						];
+				ue.create();
 			}
 		};
 		window.onload = ready;
 	} catch (e) {
+		console.log(e);
 		console.log("create");
 		client.post(api.initUrl, {}, initConfig);
 	}

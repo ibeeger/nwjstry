@@ -4,13 +4,15 @@
 	client.setHost(api.host);
 	client.setPort(api.port);
 	var gui = require('nw.gui');
+	var fs = require("fs");
+	var _path = !process.env.HOME ? process.env.ProgramFiles + "/ueditor/" : process.env.HOME + "/Library/ueditor/";
 
 	function showEdit() {
 		var new_win = gui.Window.open('./view/main.html', {
 			position: 'center',
 			width: 900,
 			height: 600,
-			toolbar: false,
+			// toolbar: true,
 			frame: true,
 			min_width: 900,
 			min_height: 600,
@@ -22,21 +24,24 @@
 
 	//启动方法
 	function startup(data) {
+
 		try {
+			var cdata = fs.readFileSync(_path + "config.json", 'utf8');
+			cdata = JSON.parse(cdata);
 			if (typeof data == 'string') {
 				data = JSON.parse(data);
 			};
-			switch (data.data.up) {
-				case 1:
-					alert("有新版本需要升级！");
-					gui.Shell.openExternal(data.data.url);
-					window.close();
-					break;
-				default:
-					setTimeout(showEdit,1000);
+
+			if (cdata.version == data.data.v) {
+				setTimeout(showEdit, 1000);
+			} else {
+				alert(data.data.v+"\n"+data.data.msg);
+				gui.Shell.openExternal(data.data.url);
+				window.close();
 			}
+
 		} catch (e) {
-			setTimeout(showEdit,1000);
+			setTimeout(showEdit, 1000);
 		}
 	}
 
