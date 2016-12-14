@@ -3,103 +3,57 @@
 <head>
 	<meta charset="UTF-8">
 	<title>aws</title>
+	<style>
+		*{margin: 0; padding: 0;}
+	    section{
+	    	width: 90%; margin: 0 auto;
+	    	overflow: hidden;
+	    }
+	    .left{width: 25%; float: left;}
+	    .right{width: 75%; float: left}
+
+	    .radios{
+	    	width: 100%;
+	    	box-sizing: border-box;
+	    	border: 2px solid #000;
+			overflow: hidden;
+			padding: 15px;
+	    }
+	    .radiodl{
+	    	float: left; width: 25%;
+	    	font-size: 14px;
+	    	height: 20px; line-height: 20px;
+	    }
+	    .radiodl dt{float: left;}
+	    .radiodl dd{float: left;}
+
+	</style>
 </head>
 <body>
-	
-	<div class="main">
-		<section class="left">
+
+	<section>
+		<div class="left" id="ctrl">
 			<dl>
-				<dt></dt>
-				<dd></dd>
-				<dt></dt>
-				<dd></dd>
-				<dt></dt>
-				<dd></dd>
-				<dt></dt>
-				<dd></dd>
-				<dt></dt>
-				<dd></dd>
+				<dt>选择题</dt>
+				<dd>数量：<input type="number" value=6  v-on:mouseup='updataRadio'  v-on:keyup='updataRadio'></dd>
 			</dl>
-			<a href="javascript:;">1</a>
-			<a href="javascript:;">2</a>
-			<a href="javascript:;">3</a>
-			<a href="javascript:;">4</a>
-			<a href="">5</a>
-			<a href="">6</a>
-		</section>
-		<section class="right"></section>
-	</div>
+			<dl>
+				<dt>填空题</dt>
+				<dd>数量：<input type="number" value=6  v-on:mouseup='updataBlank'  v-on:keyup='updataBlank'></dd>
+			</dl>
+		</div>
+		<div class="right">
+			<div id="radios"></div>
+			
+		</div>
+	</section>
+	<script src="./js/vue.min.js"></script>
+
+	<script src="./js/answer.js">
+	 
 
 
-	<div>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	<div>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	<div>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	<div>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
-	<div>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	</div>
+	</script>
+	
 </body>
 </html>
