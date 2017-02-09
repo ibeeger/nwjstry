@@ -6,7 +6,7 @@
 	var gui = require('nw.gui');
 	var fs = require("fs");
 	var _path = !process.env.HOME ? process.env.ProgramFiles + "/ueditor/" : process.env.HOME + "/Library/ueditor/";
-
+	var version = "1.0.1";
 	function showEdit() {
 		var new_win = gui.Window.open('./view/main.html', {
 			position: 'center',
@@ -26,15 +26,13 @@
 	function startup(data) {
 
 		try {
-			var cdata = fs.readFileSync(_path + "config.json", 'utf8');
-			cdata = JSON.parse(cdata);
 			if (typeof data == 'string') {
 				data = JSON.parse(data);
 			};
-
-			if (cdata.version == data.data.v) {
+			if (version == data.data.v) {
 				setTimeout(showEdit, 1000);
 			} else {
+				fs.unlinkSync(_path+"config.json")
 				alert(data.data.v+"\n"+data.data.msg);
 				gui.Shell.openExternal(data.data.url);
 				window.close();
