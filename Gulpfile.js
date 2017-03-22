@@ -10,7 +10,7 @@ gulp.task('nw', function() {
         macPlist: {
             mac_bundle_id: 'myPkg'
         },
-        platforms: ['win32', 'win64', 'osx32', 'osx64']
+        platforms: ['win64', 'osx64']
     });
 
     // Log stuff you want
@@ -27,13 +27,13 @@ gulp.task('nw', function() {
 
 gulp.task('makeico', function() {
     var nw = new NwBuilder({
-        version: '0.11.0',
+        version: '0.18.8',
         files: './Resource/makeIco/**',
         macIcns: './Resource/makeIco/ico/ico.icns',
         macPlist: {
             mac_bundle_id: 'makeico'
         },
-        platforms: ['win32', 'win64', 'osx32', 'osx64']
+        platforms: ['win64', 'osx64']
     });
 
     // Log stuff you want
@@ -73,13 +73,13 @@ gulp.task('readQuestion', function() {
 
 gulp.task('picss', function() {
     var nw = new NwBuilder({
-        version: '0.11.0',
+        version: '0.18.8',
         files: './Resource/merge/**',
         macIcns: './Resource/merge/ico.icns',
         macPlist: {
             mac_bundle_id: 'picss'
         },
-        platforms: ['win32', 'win64', 'osx32', 'osx64']
+        platforms: ['win64', 'osx64']
     });
 
     // Log stuff you want
@@ -144,6 +144,7 @@ gulp.task('ueditor', function() {
 gulp.task('default', ['nw']);
 gulp.task('ico', ['makeico']);
 gulp.task('write', ['ueditor']);
+gulp.task('pics', ['picss']);
 // gulp.task('talk', ['talks']);
 
 gulp.task('read', ['readQuestion']);
