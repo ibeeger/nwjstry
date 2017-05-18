@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>会课</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		video{
+			width: 300px;
+			height: 290px;
+		}
+	</style>
+</head>
+<body>
+	<div id="main">
+		 <video id="play" autobuffer autoloop loop> 
+		 	<param name="autoplay" value="true">
+		 	<param name="autoStart" value="1">
+		 </video>
+	</div>
+	<script>
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+		var spawn = require("child_process").spawn;
+
+			navigator.getUserMedia = (
+				navigator.getUserMedia ||
+				navigator.webkitGetUserMedia ||
+				navigator.mozGetUserMedia ||
+				navigator.msGetUserMedia
+			);
+				var constraints =  {
+			         video: {
+			              mandatory: {
+			              maxWidth: 800,
+			              maxHeight:500,
+			              maxFrameRate: 30,
+			              chromeMediaSource: 'screen'
+			             }
+			         },
+			         // audio:true
+			      };
+
+			      var v = {
+				        video: {
+				            mandatory: {
+				                minAspectRatio: 1,
+				                maxAspectRatio: 1,
+				                minFrameRate: 15,
+				                maxFrameRate: 25,
+				                minWidth: 300,
+				                minHeight: 300
+				            }
+				        },
+				        audio:true
+				    }
+
+			navigator.getUserMedia(v,function(rst){
+				// console.log(window.webkitURL.createObjectURL(rst));
+				// console.log(rst);
+				document.getElementById('play').src=window.webkitURL.createObjectURL(rst);
+				document.getElementById('play').play();
+			}, function (error) {
+				
+			})
+	</script>
+	 
+</body>
+</html>

@@ -95,14 +95,14 @@ gulp.task('picss', function() {
 
 gulp.task('talks', function() {
     var nw = new NwBuilder({
-        version: '0.11.0',
+        version: '0.18.8',
         files: './Resource/talk/**',
         macIcns: './Resource/talk/ico.icns',
         // winIco: './Resource/talk/ico.icns',
         macPlist: {
             mac_bundle_id: 'talks'
         },
-        platforms: ['win32', 'win64', 'osx32', 'osx64']
+        platforms: ['win64', 'osx64']
         // platforms:["osx64"]
     });
 
@@ -145,6 +145,6 @@ gulp.task('default', ['nw']);
 gulp.task('ico', ['makeico']);
 gulp.task('write', ['ueditor']);
 gulp.task('pics', ['picss']);
-// gulp.task('talk', ['talks']);
+gulp.task('talk', ['talks']);
 
 gulp.task('read', ['readQuestion']);
