@@ -15,8 +15,9 @@
   
 var path = require('path')
 var childProcess = require('child_process')
-var phantomjs = require('phantomjs')
-var binPath = phantomjs.path
+// var phantomjs = require('phantomjs')
+// var binPath = phantomjs.path;
+console.log(process);
 var os = require("os");
 
 var _root = os.platform() == "darwin" ? process.env.HOME+"/Desktop" : process.env.HOMEPATH+"\\Desktop"
@@ -31,7 +32,7 @@ function render(){
   ]
 
 
-  childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
+  childProcess.execFile("node", childArgs, function(err, stdout, stderr) {
       document.getElementById('adbc').innerHTML = JSON.stringify(arguments);
   })
 }
