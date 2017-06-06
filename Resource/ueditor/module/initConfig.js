@@ -2,7 +2,7 @@
  * @Author: ibeeger
  * @Date:   2016-10-26 15:03:43
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2016-12-01 16:08:33
+ * @Last Modified time: 2017-06-04 22:37:06
  */
 
 'use strict';
@@ -12,7 +12,7 @@
 	var _path = !process.env.HOME ? process.env.ProgramFiles + "/ueditor/" : process.env.HOME + "/Library/ueditor/";
 	var html = document.getElementById('mhtml').innerHTML;
 	var Vel = require("velocityjs");
-	var client = require("./module/http_client.js");
+	var client = require("./module/https_client.js");
 	var Cdata;
 	client.setUa(navigator.userAgent);
 	client.setHost(api.host);
