@@ -1,5 +1,5 @@
 (function() {
-	var client = require("./module/http_client.js");
+	var client = require("./module/https_client.js");
 	client.setUa(navigator.userAgent);
 	client.setHost(api.host);
 	client.setPort(api.port);
@@ -24,7 +24,7 @@
 
 	//启动方法
 	function startup(data) {
-
+		console.log(data);
 		try {
 			if (typeof data == 'string') {
 				data = JSON.parse(data);
