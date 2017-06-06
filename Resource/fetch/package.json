@@ -1,34 +1,33 @@
 {
   "main": "index.html",
-  "name": "answesheet",
-  "description": "demo app of NW.js",
+  "name": "fetchData",
+  "description": "抓取数据软件",
   "version": "0.1.0",
   "keywords": [
-    "demo",
-    "NW.js"
+    "数据",
+    "抓取数据软件",
+    "抓取"
   ],
   "window": {
-    "title": "会课答题卡",
+    "title": "fetchData",
     "icon": "ico.png",
     "toolbar": true,
     "frame": true,
     "width": 800,
     "height": 500,
     "position": "center",
-    "min_width": 400,
+    "transparent": false,
+    "min_width": 800,
     "min_height": 500,
     "max_width": 800,
     "max_height": 500,
-    "show": true
+    "show": false
   },
   "webkit": {
     "plugin": true
   },
-  "Dependencies": {
-    "phantomjs": "^2.0.0",
-    "phantom": "^2.0.0"
-  },
   "dependencies": {
-    "node-phantom": "^0.2.5"
+    "deck": "latest",
+    "velocityjs": "^0.9.0"
   }
 }

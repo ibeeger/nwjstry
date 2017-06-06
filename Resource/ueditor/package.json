@@ -1,0 +1,33 @@
+{
+  "main": "index.html",
+  "name": "ueditor",
+  "description": "demo app of NW.js",
+  "version": "0.1.0",
+  "keywords": [
+    "编辑器",
+    "可配置编辑器",
+    "本地联通编辑器"
+  ],
+  "window": {
+    "title": "编辑器",
+    "icon": "ico.png",
+    "toolbar": false,
+    "frame": false,
+    "width": 200,
+    "height": 87,
+    "position": "center",
+    "transparent": true,
+    "min_width": 200,
+    "min_height": 87,
+    "max_width": 200,
+    "max_height": 87,
+    "show": false
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+    "deck": "latest",
+    "velocityjs": "^0.9.0"
+  }
+}

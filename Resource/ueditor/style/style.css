@@ -1,0 +1,49 @@
+*{margin: 0;padding:0; outline: none; list-style: none;}
+
+img{border:0 none;}
+.checkupdata{text-align: right; font-size: 12px; height: 87px; box-sizing: border-box; color: #999; background:transparent url(../images/start.png) no-repeat 0 50%;}
+.editem{clear: both; box-sizing: border-box; padding: 10px; overflow: hidden;}
+.editem dd{width: 100%; float: left;}
+input[type='radio']{
+	margin: 0 5px;
+}
+input[type='text']{
+	border:1px solid #ccc;
+	display: block;
+	box-sizing: border-box;
+	height: 45px; padding: 10px;
+	border:0 none;
+	font-size: 16px;
+	width:100%;
+	border-bottom: 1px solid #f0f0f0;
+}
+textarea{
+	border:1px solid #ccc;
+	width: 90%; height: 100px;
+}
+
+input[type='button']{
+	cursor: pointer;
+	float: right;
+	padding: 5px; color: #555;
+	background-color: #499dcc; font-size: 16px;
+	border:none;
+	color: #fff;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+.blur>*{
+	 -webkit-filter: blur(10px); 
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);    
+            filter: blur(10px); 
+}
+#qr{width: 200px; height: 238px; z-index: 99; position: absolute; left: 50%; top: 50%; margin: -120px 0 0 -100px; font-size: 14px; text-align: center;}
+#qr p{color: #999}
+#qr a{color: #555; text-decoration: none;}
+.bgpop{position: absolute; z-index:90; width:900px; height: 600px; left: 0; top: 0; display: none; right:0;bottom: 0;}
+
+.footdl dt{float: left; padding-left: 15px;}
+.footdl dt input{float: left;}
+.footdl dd {float: right;}
+.ueditor{height: 450px; overflow-y: auto;line-height: 1.6;}

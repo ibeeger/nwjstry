@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编辑器</title>
+	<link rel="stylesheet" href="./style/style.css" />
+	<style>
+	   html,body{
+		background-color: #fff;
+	   }
+	</style>
+</head>
+<body>
+	<div class="checkupdata">
+		检测升级
+	</div>
+	<script>
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+		window.onload = function() {
+		  gui.Window.get().show();
+		}
+	</script>
+	<script src="./module/config.js"></script>
+	<script src="./module/checkUpdate.js"></script>
+</body>
+</html>

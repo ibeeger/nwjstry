@@ -5,6 +5,11 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>会课</title>
 	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.debugger{
+			height: 300px; overflow-y: scroll;
+		}
+	</style>
 </head>
 <body>
    <div class="debugger"></div>
@@ -20,7 +25,11 @@
 		var win = gui.Window.get();
 		window.onload = function() {
 		  gui.Window.get().show();
+		  // document.querySelector(".debugger").innerHTML = Object.keys(process).join("<br />")
+		  document.querySelector(".debugger").innerHTML = process.cwd();
 		}
+
+
 
 		function show() {
 			var roomid = document.getElementById('iptroomid').value;
@@ -36,12 +45,20 @@
 			Db.save("roomid",roomid || "hello");
 			Db.save("username",username || "user"+(Math.random()*50000000).toString(32).replace(".",""))
 
-			var new_win = gui.Window.open('./char.html',{
+			// var new_win = gui.Window.open('./char.html',{
+			// 	  position: 'center',
+			// 	  width: 800,
+			// 	  height: 900,
+			// 	  // show:false,
+			// 	  // toolbar:false,
+			// 	  // frame:false
+			// });
+			var new_win2 = gui.Window.open('./video.html',{
 				  position: 'center',
-				  width: 800,
-				  height: 500,
-				  toolbar:false,
-				  frame:false
+				  width: 1300,
+				  height: 1300,
+				  // toolbar:false,
+				  frame:true
 			});
 			
 			win.close();

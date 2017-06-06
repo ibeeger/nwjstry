@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>会课</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		video{
+			width: 300px;
+			height: 290px;
+		}
+	</style>
+	<style>
+		.debugger{
+			position: absolute;
+			left: 0; bottom: 0;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="debugger"></div>
+	<div id="main">
+		 <video id="play" autobuffer autoloop loop> 
+		 	<param name="autoplay" value="true">
+		 	<param name="autoStart" value="1">
+		 </video>
+	</div>
+	<script>
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+		
+
+			navigator.getUserMedia = (
+				navigator.getUserMedia ||
+				navigator.webkitGetUserMedia ||
+				navigator.mozGetUserMedia ||
+				navigator.msGetUserMedia
+			);
+				var constraints =  {
+			         video: {
+			              mandatory: {
+			              maxWidth: 800,
+			              maxHeight:500,
+			              maxFrameRate: 30,
+			              chromeMediaSource: 'screen'
+			             }
+			         },
+			         // audio:true
+			      };
+
+			      var v = {
+				        video: {
+				            mandatory: {
+				                minAspectRatio: 1,
+				                maxAspectRatio: 1,
+				                minFrameRate: 15,
+				                maxFrameRate: 25,
+				                minWidth: 300,
+				                minHeight: 300
+				            }
+				        },
+				        audio:true
+				    }
+
+			navigator.getUserMedia(v,function(rst){
+				// console.log(window.webkitURL.createObjectURL(rst));
+				var spawn = require("child_process").spawn;
+				var path = require("path");
+				try{
+					if (process.platform.indexOf("win")!=-1) {
+							var ffmpeg =  path.dirname(process.execPath)+"\\bin\\ffmpeg.exe";
+							var ls = spawn(ffmpeg,["-f","avfoundation","-i","1:0","-vcodec","libx264","-preset","veryfast","-acodec","libmp3lame","-ar","44100","-ac","2","-f","flv","-r","20","-s","640x360","rtmp://p461b1df9.live.126.net/live/5325bd24849a4c8b866f373ddf6eeb5a?wsSecret=310c1ea146220baf7d54c54ebccac8ca&wsTime=1495072499"]);
+
+							ls.stdout.on('data', (data) => {
+							  // console.log(`stdout: ${data}`);
+							   document.querySelector(".debugger").innerHTML = "data"+JSON.stringify(data);
+							});
+
+							ls.stderr.on('data', (data) => {
+							  // console.log(`stderr: ${data}`);
+							  document.querySelector(".debugger").innerHTML  = "err"+JSON.stringify(data.toString());
+							});
+
+							ls.on('close', (code) => {
+								  document.querySelector(".debugger").innerHTML = code
+							  // console.log(`child process exited with code ${code}`);
+							});
+					}
+					
+				}catch(e){
+					console.log(e);
+				}
+				
+
+
+				document.getElementById('play').src=window.URL.createObjectURL(rst);
+				document.getElementById('play').play();
+			}, function (error) {
+				
+			})
+	</script>
+	 
+</body>
+</html>
