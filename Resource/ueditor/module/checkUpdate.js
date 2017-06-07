@@ -2,11 +2,11 @@
 	var client = require("./module/https_client.js");
 	client.setUa(navigator.userAgent);
 	client.setHost(api.host);
-	client.setPort(api.port);
+	client.setPort(443);
 	var gui = require('nw.gui');
 	var fs = require("fs");
 	var _path = !process.env.HOME ? process.env.ProgramFiles + "/ueditor/" : process.env.HOME + "/Library/ueditor/";
-	var version = "1.0.1";
+	var version = "1.0.2";
 	function showEdit() {
 		var new_win = gui.Window.open('./view/main.html', {
 			position: 'center',
@@ -24,7 +24,6 @@
 
 	//启动方法
 	function startup(data) {
-		console.log(data);
 		try {
 			if (typeof data == 'string') {
 				data = JSON.parse(data);

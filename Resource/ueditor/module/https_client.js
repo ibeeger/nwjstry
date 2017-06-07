@@ -12,7 +12,7 @@ var http = require("https"),
 	type = 'application/json',
 	method = 'GET',
 	ua = null,
-	port = 80;
+	port = 443;
 var client = {
 	post: function(url, data, callback) {
 		var _data = JSON.stringify(data),
@@ -23,12 +23,12 @@ var client = {
 			port: port,
 			path: url,
 			method: method,
-			headers: {
-				 'User-Agent': ua,
-			     'Content-Type': type,
-				'Content-Length': _datalth,
-				// 'Cookie': cookie
-			}
+			// headers: {
+			// 	 'User-Agent': ua,
+			//      'Content-Type': type,
+			// 	'Content-Length': _datalth,
+			// 	// 'Cookie': cookie
+			// }
 		};
 
 		var _req = http.request(_options, function(res) {
@@ -45,6 +45,7 @@ var client = {
 			})
 
 		});
+		// alert(_data);
 		_req.write(_data);
 		_req.end();
 	},

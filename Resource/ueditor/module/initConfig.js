@@ -16,7 +16,7 @@
 	var Cdata;
 	client.setUa(navigator.userAgent);
 	client.setHost(api.host);
-	client.setPort(api.port);
+	client.setPort(443);
 
 	var ue;
 
@@ -44,22 +44,34 @@
 			};
 			json["token"] = data["key"];
 			document.getElementById('main').setAttribute("class", "blur");
-			$.ajax({
-				url: data.server["host"] + data.server["url"],
-				data: json,
-				// contentType:"application/json",
-				method: data.server["method"],
-				success: function(rst) {
-					rst = typeof rst == 'string' ? JSON.parse(rst) : rst;
+			client.setMethod("POST");
+			client.post( data.server["url"],json,function(rst){
+				rst = typeof rst == 'string' ? JSON.parse(rst) : rst;
+
 					if (rst.code == 0) {
 						showQr(data["key"], rst.data);
 					} else {
-						alert("保存失败!");
+						alert(JSON.stringify(rst))
+						  // alert(rst);
 						document.getElementById('main').removeAttribute("class", "blur");
 					}
-
-				}
 			})
+			// $.ajax({
+			// 	url: data.server["host"] + data.server["url"],
+			// 	data: json,
+			// 	// contentType:"application/json",
+			// 	method: data.server["method"],
+			// 	success: function(rst) {
+			// 		rst = typeof rst == 'string' ? JSON.parse(rst) : rst;
+			// 		if (rst.code == 0) {
+			// 			showQr(data["key"], rst.data);
+			// 		} else {
+			// 			alert("保存失败!");
+			// 			document.getElementById('main').removeAttribute("class", "blur");
+			// 		}
+
+			// 	}
+			// })
 		});
 
 
