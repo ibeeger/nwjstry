@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "devDependencies": {
     "gulp": "^3.x",
-    "nw-builder": "^2.x"
+    "nw-builder": "^3.4.1"
   },
   "dependencies": {
     "gulp-util": "^2.2.14",
-    "handlebars": "^4.0.5",
-    "nw-builder": "^2.2.7"
+    "handlebars": "^4.0.5"
   }
 }

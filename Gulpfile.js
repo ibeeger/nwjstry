@@ -7,12 +7,15 @@ var gutil = require('gulp-util');
 
 gulp.task('makeico', function() {
     var nw = new NwBuilder({
-          version: '0.23.3',
+        version: '0.23.3',
+        appName:'图标生成',
         files: './Resource/makeIco/**',
         macIcns: './Resource/makeIco/ico/ico.icns',
+        winIco:'./Resource/makeIco/ico/ico.icns',
         macPlist: {
             mac_bundle_id: 'makeico'
         },
+        appVersion:"1.0.0",
         platforms: ['win64', 'osx64']
     });
 
