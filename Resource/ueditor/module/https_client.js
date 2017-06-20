@@ -2,7 +2,7 @@
  * @Author: willclass
  * @Date:   2015-10-28 14:41:09
  * @Last Modified by:   ibeeger
- * @Last Modified time: 2017-06-04 22:36:41
+ * @Last Modified time: 2017-06-08 11:36:36
  */
 
 'use strict';
@@ -18,7 +18,7 @@ var client = {
 		var _data = JSON.stringify(data),
 			_datalth = Buffer.byteLength(_data, 'utf8');
 		var _options = {
-			protocol: "https:",
+			// protocol: "https:",
 			hostname: host,
 			port: port,
 			path: url,

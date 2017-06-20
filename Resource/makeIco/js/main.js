@@ -1,13 +1,12 @@
 
-// var min = require("./node_modules/imagemin/index.js");
 var dir = require("./js/dir.js");
 var config = require("./js/config.js");
 var strli = "";
+var files = [];
 //48,72,96,144
 // var sizes = [48, 72, 96, 114, 144],
 
-document.querySelector(".fxed").innerHTML = JSON.stringify(min);
-
+ 
 
 var step = 0,
 	base64Data = "",
@@ -24,7 +23,7 @@ if (typeof window.FileReader === 'undefined') {
 }
 
 
- // document.querySelector(".fxed").innerHTML =JSON.stringify(min);
+
 
 
 qico.addEventListener("click", function() {
@@ -59,10 +58,8 @@ holder.ondrop = function(e) {
 		state.innerHTML = "每次只能处理一张图片,请重试";
 		return;
 	};
-	// files.forEach(initImage);
-	// document.querySelector(".fxed").innerHTML = step + ":" + imgs;
 	var img = document.createElement("img");
-	img.src = files[0].path;
+	img.src ="file://"+files[0].path;
 	state.innerHTML = "正在裁切中..."
 	makeImage(img);
 	return false;
@@ -85,7 +82,8 @@ function objToArry(obj) {
 };
 
 function getImgSize(img, callback) {
-	img.onload = function() {
+	 
+	img.onload= function() {
 		callback({
 			w: img.width,
 			h: img.height
@@ -94,7 +92,6 @@ function getImgSize(img, callback) {
 };
 
 $(".set ul li").click(changeItem);
-
 
 $(".set a").click(function() {
 	var lt = $(".set li");
@@ -123,12 +120,13 @@ function changeItem() {
 
 function drawImage() {
 	step = 0;
+	console.log(files);
 	sizes.forEach(function() {
 		if (sizes[step]["open"] == true) {
 			canvas.width = parseInt(sizes[step]["value"]);
 			canvas.height = parseInt(sizes[step]["value"]);
 			var img = new Image();
-			img.src = files[0]["path"];
+			img.src = "file://"+files[0]["path"];
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 			base64Data = cs.toDataURL().replace(/^data:image\/png;base64,/, "");

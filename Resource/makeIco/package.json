@@ -2,27 +2,33 @@
   "name": "makeico",
   "version": "0.0.0",
   "main": "index.html",
+  "permissions":[ "tabs",
+    "*://*/*"],
   "window": {
     "title": "生成ico图片",
     "icon": "./ico/ico.png",
     "toolbar": false,
     "width": 400,
     "height": 428,
-    "min_height":428,
-    "max_height":428,
-    "min_width":400,
-    "max_width":400
+    "min_height": 428,
+    "max_height": 428,
+    "min_width": 400,
+    "max_width": 400
   },
   "devDependencies": {
-    "dir":"0.0.1",
-    "imagemin":"1.1.1"
+    "dir": "0.0.1"
   },
-  "webkit":{
-    "plugin":true
+  "webkit": {
+    "plugin": true
   },
-  "maintainers":[ {
-   "name": "ibeeger",
-   "email": "80301983@qq.com",
-   "web": "http://www.ibeeger.com"
-}]
+  "maintainers": [
+    {
+      "name": "ibeeger",
+      "email": "80301983@qq.com",
+      "web": "http://www.ibeeger.com"
+    }
+  ],
+  "dependencies": {
+    "imagemin": "^5.3.1"
+  }
 }
