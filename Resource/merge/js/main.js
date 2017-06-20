@@ -37,7 +37,7 @@ holder.ondrop = function(e) {
 
 	timer = setInterval(function() {
 		var img = document.createElement("img");
-		img.src = files[step].path;
+		img.src = "file://"+files[step].path;
 		state.innerHTML = step+"正在合并中....."
 		makeImage(img);
 	}, 100);
@@ -81,7 +81,7 @@ function makeImage(pic) {
 			// document.querySelector(".fxed").innerHTML = files.length;
 			for (var i = 0; i < files.length; i++) {
 				var img = document.createElement("img");
-				img.src = files[i]["path"];
+				img.src = "file://"+files[i]["path"];
 				ctx.drawImage(img, 0, hs[i]);
 				if (i == files.length - 1) {
 					var base64Data = cs.toDataURL().replace(/^data:image\/png;base64,/, "");
